@@ -1,41 +1,41 @@
 /**
- *
- * Gruntfile for Empower Projects
- *
- * Grunt installation:
- *
- *	npm install -g grunt-cli
- *  npm install -g grunt-init
- *  npm init (creates a `package.json` file)
- *
- * Project Dependencies:
- *
- *  npm install grunt --save-dev
- *  npm install grunt-contrib-imagemin --save-dev
- *  npm install grunt-contrib-jshint --save-dev
- *  npm install grunt-contrib-sass --save-dev
- *  npm install grunt-contrib-uglify --save-dev
- *  npm install grunt-contrib-watch --save-dev
- *  npm install jshint-stylish --save-dev
- *  npm install load-grunt-tasks --save-dev
- *  npm install time-grunt --save-dev
- *
- *  Simple Dependency Install:
- *
- *  npm install (from the same root directory as the `package.json` file)
- *
- *  Gem Dependencies:
- *  gem install image_optim
- *
- */
+*
+* Gruntfile for Empower Projects
+*
+* Grunt installation:
+*
+*  npm install -g grunt-cli
+*  npm install -g grunt-init
+*  npm init (creates a `package.json` file)
+*
+* Project Dependencies:
+*
+*  npm install grunt --save-dev
+*  npm install grunt-contrib-imagemin --save-dev
+*  npm install grunt-contrib-jshint --save-dev
+*  npm install grunt-contrib-sass --save-dev
+*  npm install grunt-contrib-uglify --save-dev
+*  npm install grunt-contrib-watch --save-dev
+*  npm install jshint-stylish --save-dev
+*  npm install load-grunt-tasks --save-dev
+*  npm install time-grunt --save-dev
+*
+*  Simple Dependency Install:
+*
+*  npm install (from the same root directory as the `package.json` file)
+*
+*  Gem Dependencies:
+*  gem install image_optim
+*
+*/
 
 module.exports = function (grunt) {
 
 	'use strict';
 
 	/**
-	 * JavaScripts
-	 */
+	* JavaScripts
+	*/
 	var js = {
 		src: {
 			dir: '',
@@ -46,65 +46,65 @@ module.exports = function (grunt) {
 			file: 'main.min.js'
 		}
 	};
-
-
-
+	
+	
+	
 	require('time-grunt')(grunt);
-
+	
 	require('load-grunt-tasks')(grunt, ['grunt-*']);
-
+	
 	grunt.initConfig({
-
-
-
-		/**
-		 * Included Package.json
-		 */
-		pkg: require('./package'),
-
-
-
-		/**
-		 *
-		 *	JavaScript Tasks
-		 *
-		 */
-
-		/**
-		 * uglify
-		 */
-		uglify: {
-			options: {
-				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
-				sourceMap: js.dest.dir + js.dest.file + '.map',
-				sourceMappingURL: js.dest.file +'.map'
-			},
-			scripts: {
-				src: js.src.dir + js.src.files,
-				dest: js.dest.dir + js.dest.file
-			}
+	
+	
+	
+	/**
+	* Included Package.json
+	*/
+	pkg: require('./package'),
+	
+	
+	
+	/**
+	*
+	*	JavaScript Tasks
+	*
+	*/
+	
+	/**
+	* uglify
+	*/
+	uglify: {
+		options: {
+			banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
+			sourceMap: js.dest.dir + js.dest.file + '.map',
+			sourceMappingURL: js.dest.file +'.map'
 		},
-
-		/**
-		 * jshint
-		 */
-		jshint: {
-			options: {
-				reporter: require('jshint-stylish')
-			},
+		scripts: {
+			src: js.src.dir + js.src.files,
+			dest: js.dest.dir + js.dest.file
+		}
+	},
+	
+	/**
+	* jshint
+	*/
+	jshint: {
+		options: {
+			reporter: require('jshint-stylish')
+		},
 			beforeconcat: js.src.dir + js.src.files,
 			afterconcat: js.dest.dir + js.dest.file
 		}
-
+	
 	});
-
-
-
+	
+	
+	
 	/**
-	 *
-	 * Register Tasks
-	 *
-	 */
+	*
+	* Register Tasks
+	*
+	*/
 	grunt.registerTask('default', ['uglify', 'jshint']);
 
 };
