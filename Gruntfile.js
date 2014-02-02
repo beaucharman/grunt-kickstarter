@@ -33,6 +33,12 @@
 module.exports = function (grunt) {
 
 	'use strict';
+	
+	/**
+	 * 
+	 * Variables
+	 * 
+	 */ 
 
 	/**
  	 * JavaScripts
@@ -72,7 +78,9 @@ module.exports = function (grunt) {
  	 */
 	
 	/**
+	 * 
 	 * uglify
+	 * 
 	 */
 	uglify: {
 		options: {
@@ -87,7 +95,9 @@ module.exports = function (grunt) {
 	},
 	
 	/**
+	 * 
 	 * jshint
+	 * 
 	 */
 	jshint: {
 		options: {
