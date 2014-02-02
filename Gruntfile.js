@@ -20,11 +20,12 @@
 *  npm install load-grunt-tasks --save-dev
 *  npm install time-grunt --save-dev
 *
-*  Simple Dependency Install:
+* Simple Dependency Install:
 *
 *  npm install (from the same root directory as the `package.json` file)
 *
-*  Gem Dependencies:
+* Gem Dependencies:
+* 
 *  gem install image_optim
 *
 */
@@ -34,8 +35,8 @@ module.exports = function (grunt) {
 	'use strict';
 
 	/**
-	* JavaScripts
-	*/
+ 	 * JavaScripts
+	 */
 	var js = {
 		src: {
 			dir: '',
@@ -58,21 +59,21 @@ module.exports = function (grunt) {
 	
 	
 	/**
-	* Included Package.json
-	*/
+	 * Included Package.json
+	 */
 	pkg: require('./package'),
 	
 	
 	
 	/**
-	*
-	*	JavaScript Tasks
-	*
-	*/
+	 *
+	 * JavaScript Tasks
+	 *
+ 	 */
 	
 	/**
-	* uglify
-	*/
+	 * uglify
+	 */
 	uglify: {
 		options: {
 			banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
@@ -86,8 +87,8 @@ module.exports = function (grunt) {
 	},
 	
 	/**
-	* jshint
-	*/
+	 * jshint
+	 */
 	jshint: {
 		options: {
 			reporter: require('jshint-stylish')
@@ -101,10 +102,10 @@ module.exports = function (grunt) {
 	
 	
 	/**
-	*
-	* Register Tasks
-	*
-	*/
+	 *
+	 * Register Tasks
+	 *
+	 */
 	grunt.registerTask('default', ['uglify', 'jshint']);
 
 };
