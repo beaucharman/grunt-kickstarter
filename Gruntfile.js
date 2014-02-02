@@ -1,12 +1,12 @@
 /**
 *
-* Gruntfile for Empower Projects
+* Gruntfile 
 *
 * Grunt installation:
 *
 *  npm install -g grunt-cli
 *  npm install -g grunt-init
-*  npm init (creates a `package.json` file)
+*  npm init
 *
 * Project Dependencies:
 *
@@ -22,7 +22,7 @@
 *
 * Simple Dependency Install:
 *
-*  npm install (from the same root directory as the `package.json` file)
+*  npm install
 *
 * Gem Dependencies:
 * 
