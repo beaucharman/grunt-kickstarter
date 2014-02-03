@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 		}
 	};
 
-	console.log(js.src.dir + js.src.files);
+	console.log(js.src.files);
 
 	require('time-grunt')(grunt);
 
@@ -92,12 +92,10 @@ module.exports = function (grunt) {
 				sourceMap: js.dest.dir + js.dest.file + '.map',
 				sourceMappingURL: js.dest.file +'.map'
 			},
-
 			// scripts: {
-			// 	src: js.src.dir + js.src.files,
+			// 	src: js.src.files,
 			// 	dest: js.dest.dir + js.dest.file
 			// }
-
 			scripts: {
 				expand: true,
 				cwd: js.src.dir,
@@ -115,7 +113,7 @@ module.exports = function (grunt) {
 			options: {
 				reporter: require('jshint-stylish')
 			},
-			beforeconcat: js.src.dir + js.src.files,
+			beforeconcat: js.src.files,
 			afterconcat: js.dest.dir + js.dest.file
 		}
 
