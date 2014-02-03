@@ -1,12 +1,11 @@
 /**
 *
-* Gruntfile 
+* Gruntfile
 *
 * Grunt installation:
 *
 *  npm install -g grunt-cli
 *  npm install -g grunt-init
-*  npm init
 *
 * Project Dependencies:
 *
@@ -20,12 +19,17 @@
 *  npm install load-grunt-tasks --save-dev
 *  npm install time-grunt --save-dev
 *
-* Simple Dependency Install:
+* Simple Dependency Install (with a package.josn):
 *
 *  npm install
 *
+* Install with no package.json
+*
+*  npm init
+*  npm install grunt grunt-contrib-imagemin grunt-contrib-jshint grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch jshint-stylish load-grunt-tasks time-grunt --save-dev
+*
 * Gem Dependencies:
-* 
+*
 *  gem install image_optim
 *
 */
@@ -33,84 +37,92 @@
 module.exports = function (grunt) {
 
 	'use strict';
-	
-	/**
-	 * 
-	 * Variables
-	 * 
-	 */ 
 
 	/**
- 	 * JavaScripts
+	 *
+	 * Variables
+	 *
+	 */
+
+	/**
+	 * JavaScripts
 	 */
 	var js = {
 		src: {
-			dir: '',
-			files: ['main.js', 'plugins.js']
+			dir: 'demo/',
+			files: ['main.js', 'plugin.js']
 		},
 		dest: {
-			dir: 'js/',
+			dir: 'demo/js/',
 			file: 'main.min.js'
 		}
 	};
-	
-	
-	
+
+	console.log(js.src.dir + js.src.files);
+
 	require('time-grunt')(grunt);
-	
+
 	require('load-grunt-tasks')(grunt, ['grunt-*']);
-	
+
 	grunt.initConfig({
-	
-	
-	
-	/**
-	 * Included Package.json
-	 */
-	pkg: require('./package'),
-	
-	
-	
-	/**
-	 *
-	 * JavaScript Tasks
-	 *
- 	 */
-	
-	/**
-	 * 
-	 * uglify
-	 * 
-	 */
-	uglify: {
-		options: {
-			banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
-			sourceMap: js.dest.dir + js.dest.file + '.map',
-			sourceMappingURL: js.dest.file +'.map'
+
+
+
+		/**
+		 * Included Package.json
+		 */
+		pkg: require('./package'),
+
+
+
+		/**
+		 *
+		 * JavaScript Tasks
+		 *
+		 */
+
+		/**
+		 *
+		 * uglify
+		 *
+		 */
+		uglify: {
+			options: {
+				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
+				sourceMap: js.dest.dir + js.dest.file + '.map',
+				sourceMappingURL: js.dest.file +'.map'
+			},
+
+			// scripts: {
+			// 	src: js.src.dir + js.src.files,
+			// 	dest: js.dest.dir + js.dest.file
+			// }
+
+			scripts: {
+				expand: true,
+				cwd: js.src.dir,
+				src: js.src.files,
+				dest: js.dest.dir + js.dest.file
+			}
 		},
-		scripts: {
-			src: js.src.dir + js.src.files,
-			dest: js.dest.dir + js.dest.file
-		}
-	},
-	
-	/**
-	 * 
-	 * jshint
-	 * 
-	 */
-	jshint: {
-		options: {
-			reporter: require('jshint-stylish')
-		},
+
+		/**
+		 *
+		 * jshint
+		 *
+		 */
+		jshint: {
+			options: {
+				reporter: require('jshint-stylish')
+			},
 			beforeconcat: js.src.dir + js.src.files,
 			afterconcat: js.dest.dir + js.dest.file
 		}
-	
+
 	});
-	
-	
-	
+
+
+
 	/**
 	 *
 	 * Register Tasks
