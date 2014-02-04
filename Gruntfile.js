@@ -50,7 +50,7 @@ module.exports = function (grunt) {
 	var js = {
 		src: {
 			dir: 'demo/',
-			files: ['main.js', 'plugin.js']
+			files: ['main.js', 'plugins.js']
 		},
 		dest: {
 			dir: 'demo/js/',
