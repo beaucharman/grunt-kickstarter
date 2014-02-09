@@ -2,4 +2,4 @@
 .sass-cache
 package.json
 node_modules
-demo/*
+library/*
