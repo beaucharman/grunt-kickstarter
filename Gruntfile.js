@@ -4,13 +4,15 @@
 * ================================================
 * Grunt installation:
 *
-*  	npm install -g grunt-cli
-*   npm install -g grunt-init
+*		npm install -g grunt-cli
+*		npm install -g grunt-init
 *
 * Project Dependencies:
 *
-*  	npm install grunt --save-dev
+*		npm install grunt --save-dev
 *   npm install grunt-autoprefixer --save-dev
+*   npm install grunt-contrib-csslint --save-dev
+*   npm install grunt-contrib-cssmin --save-dev
 *   npm install grunt-contrib-imagemin --save-dev
 *   npm install grunt-contrib-jshint --save-dev
 *   npm install grunt-contrib-sass --save-dev
@@ -20,18 +22,20 @@
 *   npm install load-grunt-tasks --save-dev
 *   npm install time-grunt --save-dev
 *
+* npm install grunt-contrib-csslint --save-dev
+*
 * Simple Dependency Install (with a package.josn):
 *
-*  	npm install
+*		npm install
 *
 * Install with no package.json
 *
-*  	npm init
-*   npm install grunt grunt-autoprefixer grunt-contrib-imagemin grunt-contrib-jshint grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch jshint-stylish load-grunt-tasks time-grunt --save-dev
+*		npm init
+*   npm install grunt grunt-autoprefixer grunt-contrib-csslint grunt-contrib-cssmin grunt-contrib-imagemin grunt-contrib-jshint grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch jshint-stylish load-grunt-tasks time-grunt --save-dev
 *
 * Gem Dependencies:
 *
-*  	gem install image_optim
+*		gem install image_optim
 *
 */
 
@@ -51,12 +55,27 @@ module.exports = function (grunt) {
 	 */
 	var css = {
 		src: {
-			dir: 'library/css/',
-			files: ['main.js', 'plugins.js']
+			dir: 'library/source/css/',
+			files: ['layout.css', 'color.css']
 		},
 		dest: {
-			dir: 'library/css/prod/',
-			file: 'main.min.js'
+			dir: 'library/css/',
+			file: 'main.min.css'
+		}
+	};
+
+	/**
+	 * SCSS
+	 */
+	var scss = {
+		src: {
+			dir: 'library/source/scss/',
+			files: ['main.scss', '_layout.css', '_color.css'],
+			main: 'main.scss'
+		},
+		dest: {
+			dir: 'library/css/',
+			file: 'main.min.css'
 		}
 	};
 
@@ -65,11 +84,11 @@ module.exports = function (grunt) {
 	 */
 	var js = {
 		src: {
-			dir: 'library/js/',
+			dir: 'library/source/js/',
 			files: ['main.js', 'plugins.js']
 		},
 		dest: {
-			dir: 'library/js/prod/',
+			dir: 'library/js/',
 			file: 'main.min.js'
 		}
 	};
@@ -79,12 +98,12 @@ module.exports = function (grunt) {
 	 */
 	var img = {
 		src: {
-			dir: 'images/',
-			jpg: ['**/*.{jpg}'],
-			png: ['**/*.{png}'],
+			dir: 'library/images/',
+			jpg: ['**/*.jpg', '**/*.jpeg'],
+			png: ['**/*.png'],
 		},
 		dest: {
-			dir: 'images/'
+			dir: 'library/images/'
 		}
 	};
 
@@ -92,19 +111,10 @@ module.exports = function (grunt) {
 	 * Helpers
 	 */
 	var helper = {
-		mapToJSFiles: function () {
-			return js.src.files.map(function (item) {
-				return js.src.dir + item;
-			});
-		},
-    mapToCSSFiles: function () {
-			return css.src.files.map(function (item) {
-				return css.src.dir + item;
-			});
-    }
+		mapToJSFiles: function () { return js.src.files.map(function (item) { return js.src.dir + item; }); },
+		mapToCSSFiles: function () { return css.src.files.map(function (item) { return css.src.dir + item; }); },
+		mapToSCSSFiles: function () { return scss.src.files.map(function (item) { return scss.src.dir + item; }); }
 	};
-
-	console.log(helper.mapToJSFiles());
 
 	require('time-grunt')(grunt);
 
@@ -135,20 +145,62 @@ module.exports = function (grunt) {
 		 */
 
 		/**
-		 * AutoPrefixer
-		 */
-		/**
-		 * CSS Concat
-		 */
-		/**
-		 * CSS Minify
-		 */
-		/**
 		 * CSS Lint
 		 */
+		csslint: {
+			strictCSS: {
+				options: {
+					ids: true
+				},
+				src: helper.mapToCSSFiles()
+			}
+		},
+
+		/**
+		 * CSS minify and concat
+		 */
+		cssmin: {
+			options: {
+				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
+				report: 'min'
+			},
+			build: {
+				src: helper.mapToCSSFiles(),
+				dest: css.dest.dir + css.dest.file
+			}
+		},
+
 		/**
 		 * Sass
 		 */
+		sass: {
+			dev: {
+				options: {
+					style: 'expanded',
+					lineNumbers: true
+				},
+				src: scss.src.dir + scss.src.main,
+				dest: scss.dest.dir + scss.dest.file
+			},
+			prod: {
+				options: {
+					banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
+					style: 'compressed'
+				},
+				src: scss.src.dir + scss.src.main,
+				dest: scss.dest.dir + scss.dest.file
+			}
+		},
+
+		/**
+		 * AutoPrefixer
+		 */
+		autoprefixer: {
+			prod: {
+				src: css.dest.dir + css.dest.file,
+				dest: css.dest.dir + css.dest.file
+			}
+		},
 
 
 
@@ -170,11 +222,22 @@ module.exports = function (grunt) {
 				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
 				sourceMap: js.dest.dir + js.dest.file + '.map',
 				sourceMappingURL: js.dest.file +'.map',
-				mangle: false,
-				beautify: true,
-				separator: ';'
 			},
-			build: {
+			/* Uglify Dev */
+			dev: {
+				options: {
+					mangle: false,
+					beautify: true
+				},
+				src: helper.mapToJSFiles(),
+				dest: js.dest.dir + js.dest.file
+			},
+			/* Uglify Prod */
+			prod: {
+				options: {
+					mangle: true,
+					beautify: false
+				},
 				src: helper.mapToJSFiles(),
 				dest: js.dest.dir + js.dest.file
 			}
@@ -204,25 +267,27 @@ module.exports = function (grunt) {
 		imagemin: {
 			png: {
 				options: {
-					optimizationLevel: 7
+					optimizationLevel: 7,
+					cache: false
 				},
 				files: [{
 					expand: true,
 					cwd: img.src.dir,
 					src: img.src.png,
-					dest: img.dest.file,
+					dest: img.dest.dir,
 					ext: '.png'
 				}]
 			},
 			jpg: {
 				options: {
-					progressive: false
+					progressive: false,
+					cache: false
 				},
 				files: [{
 					expand: true,
 					cwd: img.src.dir,
 					src: img.src.jpg,
-					dest: img.dest.file,
+					dest: img.dest.dir,
 					ext: '.jpg'
 				}]
 			}
@@ -236,13 +301,17 @@ module.exports = function (grunt) {
 		 *
 		 */
 		watch: {
-			scripts: {
+			js: {
 				files: helper.mapToJSFiles(),
-				tasks: 'scripts'
+				tasks: 'js'
 			},
-			stylesheets: {
+			css: {
 				files: helper.mapToCSSFiles(),
-				tasks: 'stylesheets'
+				tasks: 'css'
+			},
+			sass: {
+				files: helper.mapToSCSSFiles(),
+				tasks: 'sass:dev'
 			}
 		}
 
@@ -256,12 +325,47 @@ module.exports = function (grunt) {
 	 * ================================================
 	 *
 	 */
+
+	/**
+	 * Default
+	 */
 	grunt.registerTask('default', ['uglify', 'jshint']);
 
-	grunt.registerTask('scripts', ['uglify', 'jshint']);
+	grunt.registerTask('js', ['uglify', 'jshint']);
 
-	grunt.registerTask('stylesheets', ['uglify', 'jshint']);
+	grunt.registerTask('css', ['cssmin']);
 
+	/**
+	 * Optimise Images
+	 */
+	grunt.registerTask('images', ['imagemin']);
+
+	grunt.registerTask('imagepng', ['imagemin:png']);
+
+	grunt.registerTask('imagejpg', ['imagemin:jpg']);
+
+	/**
+	 * Development
+	 */
+
+	// watch
+
+	// dev
+
+	/**
+	 *	Staging and general testing
+	 */
+
+	// compile test
+
+	/**
+	 *	Production
+	 */
+	grunt.registerTask('prod', ['imagemin']);
+
+	// css / sass, lint, min, concat, autoprefix
+
+	// js, lint, min, concat
 
 
 };
