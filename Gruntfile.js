@@ -1,7 +1,14 @@
 /**
  *
  * Gruntfile
+ *
+ * @link:       https://github.com/beaucharman/grunt-kickstater
+ * @author:     Beau Charman | @beaucharman | https://github.com/beaucharman
+ * @version:    1 | February 10th 2014
+ * @license:    MIT License | http://opensource.org/licenses/MIT
+ *
  * ================================================
+ *
  * Grunt installation:
  *
  *   npm install -g grunt-cli
@@ -351,13 +358,13 @@ module.exports = function (grunt) {
 	// dev
 
 	/**
-	 *	Staging and general testing
+	 * Staging and general testing
 	 */
 
 	// compile test
 
 	/**
-	 *	Production
+	 * Production
 	 */
 	grunt.registerTask('prod', ['imagemin']);
 
