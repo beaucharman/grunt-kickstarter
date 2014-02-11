@@ -25,6 +25,7 @@
  *   npm install grunt-contrib-sass --save-dev
  *   npm install grunt-contrib-uglify --save-dev
  *   npm install grunt-contrib-watch --save-dev
+ *   npm install grunt-dploy --save-dev
  *   npm install jshint-stylish --save-dev
  *   npm install load-grunt-tasks --save-dev
  *   npm install time-grunt --save-dev
@@ -36,7 +37,7 @@
  * Install with no package.json
  *
  *   npm init
- *   npm install grunt grunt-autoprefixer grunt-contrib-csslint grunt-contrib-cssmin grunt-contrib-imagemin grunt-contrib-jshint grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch jshint-stylish load-grunt-tasks time-grunt --save-dev
+ *   npm install grunt grunt-autoprefixer grunt-contrib-csslint grunt-contrib-cssmin grunt-contrib-imagemin grunt-contrib-jshint grunt-contrib-sass grunt-contrib-uglify grunt-contrib-watch grunt-dploy jshint-stylish load-grunt-tasks time-grunt --save-dev
  *
  * Gem Dependencies:
  *
@@ -299,6 +300,50 @@ module.exports = function (grunt) {
 		},
 
 
+
+		/**
+		 *
+		 * Dploy Tasks
+		 * ================================================
+		 *
+		 */
+		dploy: {
+			staging: {
+				scheme : '',
+				host: '',
+				user: '',
+				pass: '',
+				check: true,
+				slots: 2,
+				exclude: [
+					'.gitignore',
+					'Gruntfile.js'
+				],
+				path: {
+					local: '/',
+					remote: 'public_html/'
+				}
+			},
+			prod: {
+				scheme : '',
+				host: '',
+				user: '',
+				pass: '',
+				check: true,
+				slots: 2,
+				exclude: [
+					'.gitignore',
+					'Gruntfile.js'
+				],
+				path: {
+					local: '/',
+					remote: 'public_html/'
+				}
+			}
+		},
+
+
+
 		/**
 		 *
 		 * Watch Tasks
@@ -358,15 +403,17 @@ module.exports = function (grunt) {
 	// dev
 
 	/**
-	 * Staging and general testing
+	 * Staging
 	 */
-
+	grunt.registerTask('staging-deploy', ['dploy:staging']);
 	// compile test
 
 	/**
 	 * Production
 	 */
-	grunt.registerTask('prod', ['imagemin']);
+	grunt.registerTask('prod-build', ['imagemin']);
+
+	grunt.registerTask('prod-deploy', ['dploy:prod']);
 
 	// css / sass, lint, min, concat, autoprefix
 
