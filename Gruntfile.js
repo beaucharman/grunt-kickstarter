@@ -314,7 +314,7 @@ module.exports = function (grunt) {
 				user: '',
 				pass: '',
 				check: true,
-				slots: 2,
+				slots: 3,
 				exclude: [
 					'.gitignore',
 					'Gruntfile.js'
@@ -330,7 +330,7 @@ module.exports = function (grunt) {
 				user: '',
 				pass: '',
 				check: true,
-				slots: 2,
+				slots: 3,
 				exclude: [
 					'.gitignore',
 					'Gruntfile.js'
