@@ -8,6 +8,22 @@
  * @license:    MIT License | http://opensource.org/licenses/MIT
  * ================================================
  *
+ * Grunt Configuration (this file)
+ *
+ *   Gruntfile.js
+ *
+ * Project and Dependency Information
+ *
+ *   package.json
+ *
+ * Task Aliases
+ *
+ *   grunt/aliases.js
+ *
+ * Project Paths / Grunt Variables
+ *
+ *   grunt/vars.js
+ *
  * Grunt installation:
  *
  *   npm install -g grunt-cli
