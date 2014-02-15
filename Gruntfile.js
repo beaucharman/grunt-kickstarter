@@ -73,15 +73,17 @@ module.exports = function (grunt) {
 	require('time-grunt')(grunt);
 
 	/**
-	 * load grunt config
+	 * load gruntConfig, and loadNpmTasks
 	 */
 	require('load-grunt-config')(grunt, {
 
+		/* Options for `loadNpmTasks`/`load-grunt-tasks` */
 		loadGruntTasks: {
 			pattern: ['grunt-*']
 		},
 
-		config: { //additional config vars
+		/* Options for `grunt.initConfig` */
+		config: {
 			vars: require('./grunt/vars.js'),
 			pkg: require('./package.json')
 		}

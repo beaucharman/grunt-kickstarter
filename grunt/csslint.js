@@ -1,5 +1,7 @@
 /**
+ *
  * CSS Lint
+ *
  */
 
 var helper = require('./vars.js');
