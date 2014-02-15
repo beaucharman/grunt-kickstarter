@@ -9,6 +9,7 @@ var helper = require('./vars.js');
 module.exports = {
 
 	options: {
+
 		reporter: require('jshint-stylish')
 	},
 
@@ -16,6 +17,6 @@ module.exports = {
 		return helper.js.src.dir + item;
 	}),
 
-	afterconcat: '<%= vars.js.dest.dir + vars.js.dest.file %>'
+	afterconcat: '<%= vars.js.dest.dir %>' + '<%= vars.js.dest.file %>'
 
 };

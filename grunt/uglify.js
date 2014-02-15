@@ -16,26 +16,32 @@ module.exports = {
 
 	/* Uglify Dev */
 	dev: {
+
 		options: {
 			mangle: false,
 			beautify: true
 		},
+
 		src: helper.js.src.files.map(function (item) {
 			return helper.js.src.dir + item;
 		}),
-		dest: '<%= vars.js.dest.dir + vars.js.dest.file %>'
+
+		dest: '<%= vars.js.dest.dir %>' + '<%= vars.js.dest.file %>'
 	},
 
 	/* Uglify Prod */
 	prod: {
+
 		options: {
 			mangle: true,
 			beautify: false
 		},
+
 		src: helper.js.src.files.map(function (item) {
 			return helper.js.src.dir + item;
 		}),
-		dest: '<%= vars.js.dest.dir + vars.js.dest.file %>'
+
+		dest: '<%= vars.js.dest.dir %>' + '<%= vars.js.dest.file %>'
 	}
 
 };

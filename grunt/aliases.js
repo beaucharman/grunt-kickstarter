@@ -8,9 +8,15 @@ module.exports = {
 		'notify:defualt'
 	],
 
+	/**
+	 *
+	 * Development
+	 *
+	 */
 	js: [
 		'uglify:dev'
 	],
+
 
 	watch_js: [
 		'watch:js',

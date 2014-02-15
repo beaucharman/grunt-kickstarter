@@ -9,6 +9,7 @@
 module.exports = {
 
 	staging: {
+
 		scheme : '',
 		host: '',
 		user: '',
@@ -21,12 +22,14 @@ module.exports = {
 			'grunt_tasks/**'
 		],
 		path: {
+
 			local: '/',
 			remote: 'public_html/'
 		}
 	},
 
 	prod: {
+
 		scheme : '',
 		host: '',
 		user: '',
@@ -39,6 +42,7 @@ module.exports = {
 			'grunt_tasks/**'
 		],
 		path: {
+
 			local: '/',
 			remote: 'public_html/'
 		}

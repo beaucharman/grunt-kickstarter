@@ -12,6 +12,7 @@ module.exports = {
 		 *
 		 */
 		css: {
+
 			src: {
 				dir: 'library/source/css/',
 				files: ['layout.css', 'color.css']
@@ -30,6 +31,7 @@ module.exports = {
 		 *
 		 */
 		scss: {
+
 			src: {
 				dir: 'library/source/scss/',
 				files: ['main.scss', '_layout.css', '_color.css'],
@@ -49,6 +51,7 @@ module.exports = {
 		 *
 		 */
 		js: {
+
 			src: {
 				dir: 'library/source/js/',
 				files: ['main.js', 'plugins.js']
@@ -67,6 +70,7 @@ module.exports = {
 		 *
 		 */
 		img: {
+
 			src: {
 				dir: 'library/images/',
 				jpg: ['**/*.jpg', '**/*.jpeg'],

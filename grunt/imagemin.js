@@ -7,7 +7,9 @@
 module.exports = {
 
 	png: {
+
 		options: {
+
 			optimizationLevel: 7,
 			cache: false
 		},
@@ -21,7 +23,9 @@ module.exports = {
 	},
 
 	jpg: {
+
 		options: {
+
 			progressive: false,
 			cache: false
 		},

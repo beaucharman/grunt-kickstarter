@@ -5,6 +5,7 @@
 module.exports = {
 
 	dev: {
+
 		options: {
 			style: 'expanded',
 			lineNumbers: true
@@ -14,6 +15,7 @@ module.exports = {
 	},
 
 	prod: {
+
 		options: {
 			banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */',
 			style: 'compressed'
