@@ -1,30 +1,30 @@
 # Grunt Kickstarter
 
-## Grunt Configuration
+**Grunt Configuration**
 
 `Gruntfile.js`
 
-## Project and Dependency Information
+**Project and Dependency Information**
 
 `package.json`
 
-## Task Aliases
+**Task Aliases**
 
 `grunt/aliases.js`
 
-## Project Paths / Grunt Variables
+**Project Paths / Grunt Variables**
 
 `grunt/vars.js`
 
 
-## Grunt installation:
+**Grunt installation**
 
 ``
 npm install -g grunt-cli
 npm install -g grunt-init
 ``
 
-### Project Dependencies:
+**Project Dependencies**
 
 ```
 npm install grunt --save-dev
@@ -44,13 +44,13 @@ npm install load-grunt-tasks --save-dev
 npm install time-grunt --save-dev
 ```
 
-### Simple Dependency Install (with a package.josn):
+**Simple Dependency Install (with a package.josn)**
 
 ```
 npm install
 ```
 
-### Install with no package.json
+**Install with no package.json**
 
 ```
 npm init
@@ -58,7 +58,7 @@ npm install grunt grunt-autoprefixer grunt-contrib-csslint grunt-contrib-cssmin 
 npm install -D load-grunt-config
 ```
 
-### Gem Dependencies (Image Min):
+**Gem Dependencies (Image Min)**
 
 ``
 gem install image_optim
