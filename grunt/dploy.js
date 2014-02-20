@@ -4,7 +4,7 @@
  *
  */
 
- var vars = require('./vars.js');
+var vars = require('./vars.js');
 
 module.exports = {
 
