@@ -50,6 +50,7 @@
  * Simple Dependency Install (with a package.josn):
  *
  *   npm install
+ *   npm install -D load-grunt-config
  *
  * Install with no package.json
  *

@@ -28,7 +28,7 @@ module.exports = {
 		files: helper.css.src.files.map(function (item) {
 			return helper.css.src.dir + item;
 		}),
-		tasks: 'css',
+		tasks: 'css:dev',
 		options: {
 			spawn: false,
 		},
