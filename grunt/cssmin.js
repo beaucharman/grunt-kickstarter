@@ -4,6 +4,8 @@
  *
  */
 
+ var helper = require('./vars.js');
+
 module.exports = {
 
 	options: {
@@ -14,7 +16,9 @@ module.exports = {
 
 	build: {
 
-		src: '<%= vars.helper.mapToCSSFiles() %>',
+		src: helper.css.src.files.map(function (item) {
+			return helper.css.src.dir + item;
+		}),
 		dest: '<%= vars.css.dest.dir %>' + '<%= vars.css.dest.file %>'
 	}
 
