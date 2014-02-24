@@ -2,12 +2,16 @@
  *
  * Task Aliases
  *
+ * Work in progress...
+ *
  */
 
 module.exports = {
 
 	/**
+	 *
 	 * Default Grunt Task - `grunt`
+	 *
 	 */
 	default: [
 		'uglify:dev',
@@ -23,10 +27,11 @@ module.exports = {
 		'uglify:dev'
 	],
 
-
 	watch_js: [
 		'watch:js',
 		'notify:watch'
 	]
+
+
 
 };

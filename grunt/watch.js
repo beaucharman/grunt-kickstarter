@@ -12,6 +12,7 @@ var helper = require('./vars.js');
 
 module.exports = {
 
+	/* Watch the js folder */
 	js: {
 
 		files: helper.js.src.files.map(function (item) {
@@ -23,6 +24,7 @@ module.exports = {
 		},
 	},
 
+	/* Watch the css folder */
 	css: {
 
 		files: helper.css.src.files.map(function (item) {
@@ -34,6 +36,7 @@ module.exports = {
 		},
 	},
 
+	/* Watch the sass folder */
 	sass: {
 
 		files: helper.scss.src.files.map(function (item) {
