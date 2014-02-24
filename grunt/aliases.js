@@ -11,7 +11,7 @@ module.exports = {
 	 */
 	default: [
 		'uglify:dev',
-		'notify:defualt'
+		'notify:default'
 	],
 
 	/**
