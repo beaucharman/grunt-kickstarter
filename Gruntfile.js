@@ -69,12 +69,12 @@ module.exports = function (grunt) {
 	'use strict';
 
 	/**
-	 * measures the time each task takes
+	 * Displays the time each task takes
 	 */
 	require('time-grunt')(grunt);
 
 	/**
-	 * load gruntConfig, and loadNpmTasks
+	 * Load gruntConfig, and loadNpmTasks
 	 */
 	require('load-grunt-config')(grunt, {
 
