@@ -14,6 +14,7 @@ module.exports = {
 		host: '',
 		user: '',
 		pass: '',
+		revision: '.revision',
 		check: true,
 		slots: 3,
 		exclude: [
@@ -34,6 +35,7 @@ module.exports = {
 		host: '',
 		user: '',
 		pass: '',
+		revision: '.revision',
 		check: true,
 		slots: 3,
 		exclude: [
